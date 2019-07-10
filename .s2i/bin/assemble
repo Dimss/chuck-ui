@@ -1,7 +1,5 @@
-pwd
-ls -all
-#ls -all /tmp/src/
-#cd  /tmp/src/
-#npm i
-#npm install -g serve
-#npm run-script build
+cd  /tmp/src/
+npm i
+npm install -g serve
+npm run-script build
+cp -R /tmp/src/build /opt/app-root/src/build

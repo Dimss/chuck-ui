@@ -1,2 +1,2 @@
-cp -R /tmp/src/build /tmp/build
-cd /tmp/build && sed -i "s~__API_URL__~${API_URL}~g" index.html && serve -l 3000 -s
+#cp -R /tmp/src/build /tmp/build
+cd build && sed -i "s~__API_URL__~${API_URL}~g" index.html && serve -l 3000 -s
