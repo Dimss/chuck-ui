@@ -1,5 +1,6 @@
 #!/bin/bash -e
 whoami
+cat fix-permissions
 fix-permissions ./
 #cd  /tmp/src/
 #npm i
