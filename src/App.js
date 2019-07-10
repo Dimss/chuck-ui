@@ -6,6 +6,8 @@ export default class App extends React.Component {
 
     constructor(props) {
         super(props);
+        if (process.env.REACT_APP_PROFILE === 'dev') this.API = "http://127.0.0.1:8080";
+        else this.API = window.API_URL;
         this.state = {joke: '', translated: ''};
         this.onJokeClick();
     }
@@ -13,8 +15,7 @@ export default class App extends React.Component {
     getSelectedText = () => {
         let selection = window.getSelection().toString();
         if (selection.length > 0) {
-            console.log(selection);
-            fetch('http://localhost:8080/v1/translate/' + selection)
+            fetch(`${this.API}/v1/translate/${selection}`)
                 .then((response) => {
                     return response.json();
                 })
@@ -24,14 +25,11 @@ export default class App extends React.Component {
                     });
                 });
         }
-
     };
 
     onJokeClick = () => {
-        this.setState({
-            translated: ''
-        });
-        fetch('http://localhost:8080/v1/joke')
+        this.setState({translated: ''});
+        fetch(`${this.API}/v1/joke`)
             .then((response) => {
                 return response.json();
             })
