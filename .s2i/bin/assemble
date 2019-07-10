@@ -1,6 +1,6 @@
 #!/bin/bash -e
 whoami
-guid
+fix-permissions ./
 #cd  /tmp/src/
 #npm i
 #npm install -g serve
