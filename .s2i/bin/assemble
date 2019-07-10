@@ -1,5 +1,6 @@
 #!/bin/bash -e
 whoami
+guid
 #cd  /tmp/src/
 #npm i
 #npm install -g serve
