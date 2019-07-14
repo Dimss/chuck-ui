@@ -34,7 +34,6 @@ spec:
         env:
         - name: API_URL
           value: "http://127.0.0.1:30081"
-        command: ["/bin/bash","-c","sleep 300000"]
   triggers:
     - type: "ConfigChange"
     - type: "ImageChange"
