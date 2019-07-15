@@ -1,0 +1,18 @@
+kind: "BuildConfig"
+apiVersion: "v1"
+metadata:
+  name: "chuck-ui-custom"
+spec:
+  runPolicy: "Serial"
+  source:
+    git:
+      uri: "https://github.com/Dimss/chuck-ui"
+  strategy:
+    customStrategy:
+      from:
+        kind: "DockerImage"
+        name: "dimssss/custom-builder:0.6"
+  output:
+    to:
+      kind: "ImageStreamTag"
+      name: "chuck-ui:latest"
