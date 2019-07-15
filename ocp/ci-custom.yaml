@@ -16,6 +16,11 @@ spec:
     to:
       kind: "ImageStreamTag"
       name: "chuck-ui:latest"
+  triggers:
+  - generic:
+      secret: dGvu1slX2WybtV_HOcYJ
+    type: Generic
+    allowEnv: true
 
 
 
