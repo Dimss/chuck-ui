@@ -16,3 +16,6 @@ spec:
     to:
       kind: "ImageStreamTag"
       name: "chuck-ui:latest"
+
+
+      
