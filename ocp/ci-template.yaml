@@ -39,3 +39,6 @@ parameters:
 - description: App project
   name: APP_PROJECT
   required: true
+- description: Ops project
+  name: OPS_PROJECT
+  required: true
