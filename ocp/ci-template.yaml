@@ -1,0 +1,34 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+metadata:
+  name: bc-template
+objects:
+- kind: ImageStream
+  apiVersion: v1
+  metadata:
+    name: "chuck-ui"
+  spec:
+    tags:
+    - from:
+        kind: DockerImage
+        name: "docker-registry.default.svc:5000/chuck/ui"
+      name: "latest"
+- kind: "BuildConfig"
+  apiVersion: "v1"
+  metadata:
+    name: "chuck-ui"
+  spec:
+    runPolicy: "Serial"
+    source:
+      git:
+        uri: "https://github.com/Dimss/chuck-ui"
+    strategy:
+      sourceStrategy:
+        from:
+          kind: "ImageStreamTag"
+          name: "nodejs:latest"
+          namespace: openshift
+    output:
+      to:
+        kind: "ImageStreamTag"
+        name: "chuck-ui:latest"
