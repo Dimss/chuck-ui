@@ -18,6 +18,7 @@ objects:
   apiVersion: "v1"
   metadata:
     name: "chuck-ui"
+    namespace: ${OPS_PROJECT}
   spec:
     runPolicy: "Serial"
     source:
