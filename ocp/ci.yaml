@@ -11,7 +11,7 @@ spec:
     customStrategy:
       from:
         kind: "DockerImage"
-        name: "dimssss/custom-builder:0.21"
+        name: "dimssss/custom-builder:0.22"
       secrets:
       - secretSource:
           name: "builder-config"
