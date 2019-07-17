@@ -1,7 +1,7 @@
 kind: "BuildConfig"
 apiVersion: "v1"
 metadata:
-  name: "custom"
+  name: "chuck-ui-base"
 spec:
   runPolicy: "Serial"
   source:
@@ -11,19 +11,18 @@ spec:
     customStrategy:
       from:
         kind: "DockerImage"
-        name: "dimssss/custom-builder:0.11"
+        name: "dimssss/custom-builder:0.21"
       secrets:
       - secretSource:
           name: "builder-config"
         mountPath: "/tmp/builder-config"
+      env:
+        - name: "OPS_TYPE"
+          value: "build"
   triggers:
   - github:
       secret: dGvu1slX2WybtV_HOcYJ
     type: "GitHub"
-#  - generic:
-#      secret: dGvu1slX2WybtV_HOcYJ
-#    type: Generic
-#    allowEnv: true
 
 
 

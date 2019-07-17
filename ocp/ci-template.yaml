@@ -1,11 +1,12 @@
 apiVersion: template.openshift.io/v1
 kind: Template
 metadata:
-  name: bc-template
+  name: bc-chuck-ui-template
 objects:
 - kind: ImageStream
   apiVersion: v1
   metadata:
+    namespace: ${APP_PROJECT}
     name: "chuck-ui"
   spec:
     tags:
@@ -32,3 +33,8 @@ objects:
       to:
         kind: "ImageStreamTag"
         name: "chuck-ui:latest"
+        namespace: ${APP_PROJECT}
+parameters:
+- description: App project
+  name: APP_PROJECT
+  required: true
