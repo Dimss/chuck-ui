@@ -17,7 +17,7 @@ objects:
 - kind: "BuildConfig"
   apiVersion: "v1"
   metadata:
-    name: "chuck-ui"
+    name: "chuck-ui-s2i"
     namespace: ${OPS_PROJECT}
   spec:
     runPolicy: "Serial"
