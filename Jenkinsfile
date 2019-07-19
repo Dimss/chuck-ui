@@ -50,8 +50,7 @@ pipeline {
                             def models = openshift.process(ciDepTemplate,
                                     "-p=BUILD_NAME=${getBuildName()}",
                                     "-p=APP_PROJECT=${env.APP_PROJECT}",
-                                    "-p=OPS_PROJECT=${env.OPS_PROJECT}",
-                            )
+                                    "-p=OPS_PROJECT=${env.OPS_PROJECT}")
                             openshift.create(models)
                             def bc = openshift.selector("buildconfig/${getAppName()}")
                             def build = bc.startBuild()
