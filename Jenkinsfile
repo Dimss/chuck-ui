@@ -53,6 +53,10 @@ pipeline {
                                     "-p=OPS_PROJECT=${env.OPS_PROJECT}",
                             )
                             openshift.create(models)
+                            def bc = openshift.selector("buildconfig/${getAppName()}")
+                            def build = bc.startBuild()
+                            build.logs("-f")
+                            openshift.delete(models)
                         }
                     }
                 }
