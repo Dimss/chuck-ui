@@ -44,17 +44,22 @@ pipeline {
                 script {
                     openshift.withCluster() {
                         openshift.withProject() {
-                            echo "${getBuildName()}"
-                            echo "============================"
+                            // Read BC template files
                             def ciDepTemplate = readFile('ocp/ci-s2i-template.yaml')
+                            // Process the template into OCP objects
                             def models = openshift.process(ciDepTemplate,
                                     "-p=BUILD_NAME=${getBuildName()}",
                                     "-p=APP_PROJECT=${env.APP_PROJECT}",
                                     "-p=OPS_PROJECT=${env.OPS_PROJECT}")
+                            // Create objects
                             openshift.create(models)
+                            // Find created BC by name
                             def bc = openshift.selector("buildconfig/${getBuildName()}")
+                            // Start the build
                             def build = bc.startBuild()
+                            // Follow the build logs until the build is finished
                             build.logs("-f")
+                            // Cleanup created resources
                             openshift.delete(models)
                         }
                     }
