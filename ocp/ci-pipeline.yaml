@@ -1,0 +1,14 @@
+kind: "BuildConfig"
+apiVersion: "v1"
+metadata:
+  name: "chuck-ui-pipeline"
+  namespace: "chuck-ops"
+spec:
+  runPolicy: "Serial"
+  source:
+    git:
+      uri: "https://github.com/Dimss/chuck-ui"
+  strategy:
+    jenkinsPipelineStrategy:
+      jenkinsfile:
+    type: JenkinsPipeline

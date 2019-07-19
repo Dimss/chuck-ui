@@ -1,0 +1,33 @@
+kind: ImageStream
+apiVersion: v1
+metadata:
+  namespace: "chuck"
+  name: "chuck-ui"
+spec:
+  tags:
+  - from:
+      kind: DockerImage
+      name: "docker-registry.default.svc:5000/chuck/ui"
+    name: "latest"
+---
+kind: "BuildConfig"
+apiVersion: "v1"
+metadata:
+  name: "chuck-ui-s2i"
+  namespace: "chuck-ops"
+spec:
+  runPolicy: "Serial"
+  source:
+    git:
+      uri: "https://github.com/Dimss/chuck-ui"
+  strategy:
+    sourceStrategy:
+      from:
+        kind: "ImageStreamTag"
+        name: "nodejs:latest"
+        namespace: openshift
+  output:
+    to:
+      kind: "ImageStreamTag"
+      name: "chuck-ui:latest"
+      namespace: "chuck"
