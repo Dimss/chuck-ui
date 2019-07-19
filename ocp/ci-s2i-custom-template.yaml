@@ -6,8 +6,8 @@ objects:
 - kind: ImageStream
   apiVersion: v1
   metadata:
-    namespace: "chuck"
-    name: ${APP_PROJECT}
+    namespace: ${APP_PROJECT}
+    name: "chuck-ui"
   spec:
     tags:
     - from:
@@ -17,7 +17,7 @@ objects:
 - kind: "BuildConfig"
   apiVersion: "v1"
   metadata:
-    name: ${BUILD_NAME}
+    name: "chuck-ui"
     namespace: ${OPS_PROJECT}
   spec:
     runPolicy: "Serial"
@@ -42,6 +42,3 @@ parameters:
 - description: Ops project
   name: OPS_PROJECT
   required: true
-- description: Build name
-  name: BUILD_NAME
-  value: "chuck-ui"
