@@ -44,8 +44,9 @@ pipeline {
                 script {
                     openshift.withCluster() {
                         openshift.withProject() {
+                            echo "${getBuildName()}"
+                            echo "============================"
                             def ciDepTemplate = readFile('ocp/ci-s2i-template.yaml')
-
                             def models = openshift.process(ciDepTemplate,
                                     "-p=BUILD_NAME=${getBuildName()}",
                                     "-p=APP_PROJECT=${env.APP_PROJECT}",
