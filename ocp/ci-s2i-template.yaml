@@ -1,12 +1,12 @@
 apiVersion: template.openshift.io/v1
 kind: Template
 metadata:
-  name: ${BUILD_NAME}
+  name: "chuck-ui-s2i-bc-template"
 objects:
 - kind: "BuildConfig"
   apiVersion: "v1"
   metadata:
-    name: "chuck-ui-s2i"
+    name: ${BUILD_NAME}
     namespace: ${OPS_PROJECT}
   spec:
     runPolicy: "Serial"
