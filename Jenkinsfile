@@ -2,25 +2,62 @@ pipeline {
     agent {
         node {
             label 'nodejs'
+            appProject 'chuck'
+            opsProject 'chuck-ops'
         }
     }
     stages {
-        stage('Run tests') {
+        stage('SCA') {
             steps {
                 script {
-                    sh "pwd"
-                    sh "ls -all"
+                    sh '''
+                       echo "DO STATIC CODE ANALYSIS AND DEPENDENCY SCANNING"
+                       '''
+                    echo "${env.getProperty(opsProject)}"
                 }
             }
         }
-        stage('Test 1') {
+        stage('BUILD') {
+            steps {
+                script {
+                    sh '''
+                       echo "DO BUILD"
+                       '''
+                }
+            }
+        }
+        stage('BUILD WITH OCP') {
             steps {
                 script {
                     openshift.withCluster() {
                         openshift.withProject() {
-                            echo "Hello from project ${openshift.project()} in cluster ${openshift.cluster()}"
+                            def ciDepTemplate = readFile('ocp/ci/ci-template.yaml')
+
+                            def models = openshift.process(ciDepTemplate,
+                                    "-p=APP_PROJECT=${env.getProperty(appProject)}",
+                                    "-p=OPS_PROJECT=${env.getProperty(opsProject)}",
+                            )
+                            openshift.create(models)
                         }
                     }
+                }
+            }
+        }
+        stage('TEST') {
+            steps {
+                script {
+                    sh '''
+                       echo "DO TEST"
+                       '''
+                }
+            }
+        }
+        stage('ETC...') {
+            steps {
+                script {
+                    sh '''
+                       echo "DO ETC..."
+                       '''
                 }
             }
         }
