@@ -1,12 +1,19 @@
 pipeline {
     agent {
         node {
-            label 'maven'
+            label 'nodejs'
         }
     }
     stages {
+        stage('Run tests') {
+            steps {
+                script {
+                    sh "pwd"
+                    sh "ls -all"
+                }
+            }
+        }
         stage('Test 1') {
-
             steps {
                 script {
                     openshift.withCluster() {
