@@ -45,7 +45,7 @@ pipeline {
                     openshift.withCluster() {
                         openshift.withProject() {
                             // Read BC template files
-                            def ciDepTemplate = readFile('ocp/ci-s2i-template.yaml')
+                            def ciDepTemplate = readFile('ocp/ci-s2i-pipeline-template.yaml')
                             // Process the template into OCP objects
                             def models = openshift.process(ciDepTemplate,
                                     "-p=BUILD_NAME=${getBuildName()}",

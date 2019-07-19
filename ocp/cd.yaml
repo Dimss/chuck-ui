@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: "chuck-ui"
+  namespace: "chuck"
 spec:
   selector:
     app: "chuck-ui"
@@ -18,6 +19,7 @@ metadata:
   labels:
     app: "chuck-ui"
   name: "chuck-ui"
+  namespace: "chuck"
 spec:
   replicas: 1
   template:
