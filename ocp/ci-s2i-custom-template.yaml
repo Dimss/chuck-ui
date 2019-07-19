@@ -1,0 +1,47 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+metadata:
+  name: "chuck-ui-s2i-bc-template"
+objects:
+- kind: ImageStream
+  apiVersion: v1
+  metadata:
+    namespace: "chuck"
+    name: ${APP_PROJECT}
+  spec:
+    tags:
+    - from:
+        kind: DockerImage
+        name: "docker-registry.default.svc:5000/chuck/ui"
+      name: "latest"
+- kind: "BuildConfig"
+  apiVersion: "v1"
+  metadata:
+    name: ${BUILD_NAME}
+    namespace: ${OPS_PROJECT}
+  spec:
+    runPolicy: "Serial"
+    source:
+      git:
+        uri: "https://github.com/Dimss/chuck-ui"
+    strategy:
+      sourceStrategy:
+        from:
+          kind: "ImageStreamTag"
+          name: "nodejs:latest"
+          namespace: openshift
+    output:
+      to:
+        kind: "ImageStreamTag"
+        name: "chuck-ui:latest"
+        namespace: ${APP_PROJECT}
+parameters:
+- description: App project
+  name: APP_PROJECT
+  required: true
+- description: Ops project
+  name: OPS_PROJECT
+  required: true
+- description: Build name
+  name: BUILD_NAME
+  value: "chuck-ui"
