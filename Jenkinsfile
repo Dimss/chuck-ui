@@ -1,9 +1,23 @@
+def getGitCommitShortHash() {
+    return checkout(scm).GIT_COMMIT.substring(0, 7)
+}
+
+def getJobName() {
+    def jobNameList = env.JOB_NAME.split("/")
+    if (jobNameList.size() > 0)
+        return jobNameList[jobNameList.size() - 1]
+    else
+        return jobName
+}
+
+def getBuildName() {
+    return "${getJobName()}-${getGitCommitShortHash()}"
+}
+
 pipeline {
     agent {
         node {
             label 'nodejs'
-            appProject 'chuck'
-            opsProject 'chuck-ops'
         }
     }
     stages {
@@ -13,7 +27,6 @@ pipeline {
                     sh '''
                        echo "DO STATIC CODE ANALYSIS AND DEPENDENCY SCANNING"
                        '''
-                    echo "${env.getProperty(opsProject)}"
                 }
             }
         }
@@ -34,8 +47,9 @@ pipeline {
                             def ciDepTemplate = readFile('ocp/ci/ci-s2i-template.yaml')
 
                             def models = openshift.process(ciDepTemplate,
-                                    "-p=APP_PROJECT=${env.getProperty(appProject)}",
-                                    "-p=OPS_PROJECT=${env.getProperty(opsProject)}",
+                                    "-p=BUILD_NAME=${getBuildName()}",
+                                    "-p=APP_PROJECT=${env.APP_PROJECT}",
+                                    "-p=OPS_PROJECT=${env.OPS_PROJECT}",
                             )
                             openshift.create(models)
                         }
