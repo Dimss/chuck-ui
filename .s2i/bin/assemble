@@ -1,5 +1,6 @@
 #!/bin/bash -e
 echo "hello"
+sleep 3600
 #cd  /tmp/src/
 #npm i
 #npm install -g serve
