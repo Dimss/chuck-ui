@@ -1,7 +1,8 @@
 #!/bin/bash -e
-cd  /tmp/src/
-npm i
-npm install -g serve
-npm run-script build
-cp -R /tmp/src/build /opt/app-root/src/build
-fix-permissions /opt/app-root/src/build
+echo "hello"
+#cd  /tmp/src/
+#npm i
+#npm install -g serve
+#npm run-script build
+#cp -R /tmp/src/build /opt/app-root/src/build
+#fix-permissions /opt/app-root/src/build
