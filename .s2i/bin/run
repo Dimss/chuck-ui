@@ -1,3 +1,2 @@
 #cp -R /tmp/src/build /tmp/build
-sleep 3600
 cd build && sed -i "s~__API_URL__~${API_URL}~g" index.html && /tmp/src/node_modules/serve/bin/serve.js -l 3000 -s
