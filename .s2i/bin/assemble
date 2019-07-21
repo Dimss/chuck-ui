@@ -1,6 +1,4 @@
 #!/bin/bash -e
-echo "hello"
-sleep 3600
 cd  /tmp/src/
 tar zxvf node_modules.tar.gz
 #npm i
