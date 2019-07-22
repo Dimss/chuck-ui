@@ -13,6 +13,19 @@ spec:
     targetPort: 3000
     nodePort: 30080
 ---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: chuck-ui
+  namespace: chuck
+spec:
+  host: chuck-ui-chuck.router.default.svc.cluster.local
+  port:
+    targetPort: http
+  to:
+    kind: Service
+    name: chuck-ui
+---
 kind: DeploymentConfig
 apiVersion: "v1"
 metadata:
@@ -35,7 +48,7 @@ spec:
         - containerPort: 3000
         env:
         - name: API_URL
-          value: "http://127.0.0.1:30081"
+          value: "http://chuck-ui-chuck.router.default.svc.cluster.local"
   triggers:
     - type: "ConfigChange"
     - type: "ImageChange"
