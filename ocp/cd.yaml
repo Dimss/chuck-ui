@@ -61,4 +61,3 @@ spec:
           name: "chuck-ui:latest"
           namespace: "chuck"
 
-          
