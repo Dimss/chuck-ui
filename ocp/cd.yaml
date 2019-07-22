@@ -48,7 +48,7 @@ spec:
         - containerPort: 3000
         env:
         - name: API_URL
-          value: "http://chuck-ui-chuck.router.default.svc.cluster.local"
+          value: "http://chuck-api-chuck.router.default.svc.cluster.local"
   triggers:
     - type: "ConfigChange"
     - type: "ImageChange"
