@@ -60,3 +60,5 @@ spec:
           kind: "ImageStreamTag"
           name: "chuck-ui:latest"
           namespace: "chuck"
+
+          
