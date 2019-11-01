@@ -19,7 +19,7 @@ metadata:
   name: chuck-ui
   namespace: chuck
 spec:
-  host: chuck-ui-chuck.router.default.svc.cluster.local
+  host: chuck-ui.apps.a.okto.ocplab.io
   port:
     targetPort: http
   to:
@@ -48,7 +48,7 @@ spec:
         - containerPort: 3000
         env:
         - name: API_URL
-          value: "http://chuck-api-chuck.router.default.svc.cluster.local"
+          value: "http://chuck-api.apps.a.okto.ocplab.io"
   triggers:
     - type: "ConfigChange"
     - type: "ImageChange"
