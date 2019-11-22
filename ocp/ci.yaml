@@ -1,0 +1,22 @@
+kind: "BuildConfig"
+apiVersion: "v1"
+metadata:
+  name: "chuck-ui"
+  namespace: "chuck"
+spec:
+  runPolicy: "Serial"
+  source:
+    git:
+      uri: "https://github.com/Dimss/chuck-ui"
+  strategy:
+    sourceStrategy:
+      from:
+        kind: "ImageStreamTag"
+        name: "nodejs:latest"
+        namespace: openshift
+  output:
+    to:
+      kind: "DockerImage"
+      name: "docker.io/dimssss/chuck-ui:latest"
+    pushSecret:
+      name: docker-hub-dimssss

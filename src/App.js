@@ -35,7 +35,7 @@ export default class App extends React.Component {
             })
             .then((jokeObj) => {
                 this.setState({
-                    joke: jokeObj.data
+                    joke: jokeObj.data.joke
                 });
             });
     };
@@ -64,6 +64,12 @@ export default class App extends React.Component {
                         {this.state.joke}
                     </h1>
                     <a onClick={this.onJokeClick} className="btn cta">Next</a>
+                    {/*<a onClick={this.onJokeClick} className="btn cta">Like</a>*/}
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    {/*<p style={{color: "white", fontWeight: "bold"}}>Likes: <span className="glyphicon glyphicon-thumbs-up"></span> 1241</p>*/}
                     <h1>
                         {this.state.translated}
                     </h1>
