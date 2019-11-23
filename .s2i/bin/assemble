@@ -1,8 +1,8 @@
 #!/bin/bash -e
 cd  /tmp/src/
-#tar zxvf node_modules.tar.gz
-npm i
-npm install -g serve
+tar zxvf node_modules.tar.gz
+#npm i
+#npm install -g serve
 npm run-script build
 cp -R /tmp/src/build /opt/app-root/src/build
 fix-permissions /opt/app-root/src/build
