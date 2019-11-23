@@ -12,7 +12,7 @@ objects:
     runPolicy: "Serial"
     source:
       git:
-        uri: "https://github.com/Dimss/chuck-ui "
+        uri: "https://github.com/Dimss/chuck-ui"
     strategy:
       sourceStrategy:
         from:
