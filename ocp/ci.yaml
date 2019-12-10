@@ -17,6 +17,6 @@ spec:
   output:
     to:
       kind: "DockerImage"
-      name: "docker.io/dimssss/chuck-ui:latest"
+      name: "docker.io/dimssss/chuck-ui:blue"
     pushSecret:
       name: docker-hub-dimssss
