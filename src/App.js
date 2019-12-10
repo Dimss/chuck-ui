@@ -8,7 +8,7 @@ export default class App extends React.Component {
         super(props);
         if (process.env.REACT_APP_PROFILE === 'dev') this.API = "http://127.0.0.1:8080";
         else this.API = window.API_URL;
-        this.state = {joke: '', translated: ''};
+        this.state = {joke: '', translated: '', color: '#fff'};
         this.onJokeClick();
     }
 
@@ -35,7 +35,8 @@ export default class App extends React.Component {
             })
             .then((jokeObj) => {
                 this.setState({
-                    joke: jokeObj.data.joke
+                    joke: jokeObj.data.joke,
+                    color: jokeObj.data.color
                 });
             });
     };
@@ -60,11 +61,10 @@ export default class App extends React.Component {
                 <div
                     className="context"
                     style={{textAlign: "center"}}>
-                    <h1 onMouseUp={this.getSelectedText}>
+                    <h1 style={{"color": this.state.color}} onMouseUp={this.getSelectedText}>
                         {this.state.joke}
                     </h1>
                     <a onClick={this.onJokeClick} className="btn cta">Next</a>
-                    {/*<a onClick={this.onJokeClick} className="btn cta">Like</a>*/}
                     <br/>
                     <br/>
                     <br/>

@@ -72,11 +72,9 @@ body {
 }
 
 .area {
-    /*background: #4e54c8;*/
+    background: #4e54c8;
 
-    background: #119b50;
-
-
+    /*background: #119b50;*/
 
     width: 100%;
     height: 100vh;
